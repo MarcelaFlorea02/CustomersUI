@@ -84,7 +84,7 @@ namespace CustomersUI
             view[dataGridView1.CurrentRow.Index]["LastName"] = dataGridView1.CurrentRow.Cells[3].Value;
             view[dataGridView1.CurrentRow.Index].EndEdit();
             dataGridView1.DataSource = view;
-            
+
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
             adapter.Update(set.Tables["Customer"]);
 
