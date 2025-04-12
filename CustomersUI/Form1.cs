@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace CustomersUI
 {
@@ -19,6 +20,11 @@ namespace CustomersUI
         }
 
         private void button_get_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        public void LoadData()
         {
             //modify this accordinglly to your local setup 
             string connectionString = "Server=ACCROM-F1CQP73\\SQL2017;Database=Demo;Trusted_connection=true;";
@@ -32,7 +38,6 @@ namespace CustomersUI
             adapter.Fill(set, "Customer");
 
             dataGridView1.DataSource = set.Tables["Customer"];
-
         }
 
         private void button_delete_Click(object sender, EventArgs e)
@@ -59,7 +64,7 @@ namespace CustomersUI
 
         private void button_insert_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
+            Form2 form2 = new Form2(this);
             form2.ShowDialog();
         }
 
@@ -88,6 +93,11 @@ namespace CustomersUI
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
             adapter.Update(set.Tables["Customer"]);
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

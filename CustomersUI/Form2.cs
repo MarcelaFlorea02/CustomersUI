@@ -6,13 +6,16 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace CustomersUI
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        private Form1 form1;
+        public Form2(Form1 parent)
         {
+            form1 = parent;
             InitializeComponent();
         }
 
@@ -38,10 +41,9 @@ namespace CustomersUI
             SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
             adapter.Update(set.Tables["Customer"]);
 
-            
+            form1.LoadData();
+
             this.Close();
-
-
 
         }
     }
